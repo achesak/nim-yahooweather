@@ -16,5 +16,11 @@ import streams
 
 # Create the return type.
 type TYWeather* = tuple[sunrise : string, sunset : string, humidity : string, pressure : string, rising : string, 
-                       visibility : string, code : string, date : string, temp : string, text : string, title : string, latitude : string, logitude : string, htmlDescription : string, link : string, city : string, country : string, region : string, windChill : string, windDirection : string, windSpeed : string, distanceUnits : string, pressureUnits : string, speedUnits : string, tempUnits : string]
+                       visibility : string, code : string, date : string, temp : string, text : string, title : string,
+                       latitude : string, logitude : string, htmlDescription : string, link : string, city : string,
+                       country : string, region : string, windChill : string, windDirection : string, windSpeed : string,
+                       distanceUnits : string, pressureUnits : string, speedUnits : string, tempUnits : string]
 
+
+proc getWeather(woeid : string, units : string = "c"): TYWeather = 
+    # Gets the weather data.
