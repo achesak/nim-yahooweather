@@ -72,7 +72,7 @@ proc getWeather*(woeid : string, units : string = "c"): TYWeather =
 
 
 proc getForecasts*(woeid : string, units : string = "c"): array[5, TYWeatherForecast] = 
-    # Gets forcasts for the next five days.
+    # Gets forecasts for the next five days.
     
     # Build the URL.
     var url : string = "http://weather.yahooapis.com/forecastrss?"
