@@ -71,7 +71,7 @@ proc getWeather*(woeid : string, units : string = "c"): TYWeather =
     return weather
 
 
-proc getForecasts*(woeid : string, units : string = "c"): array[5, TYWeatherForcast] = 
+proc getForecasts*(woeid : string, units : string = "c"): array[5, TYWeatherForecast] = 
     # Gets forcasts for the next five days.
     
     # Build the URL.
