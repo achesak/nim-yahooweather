@@ -74,4 +74,65 @@ proc getWeather*(woeid : string, units : string = "c"): TYWeather =
 proc getForecasts*(woeid : string, units : string = "c"): array[5, TYWeatherForcast] = 
     # Gets forcasts for the next five days.
     
-    ## WRITE THIS!!!
+    # Build the URL.
+    var url : string = "http://weather.yahooapis.com/forecastrss?"
+    url = url & "w=" & woeid & "&u=" & units
+    
+    # Get the data
+    var response : string = getContent(url)
+    
+    # Parse the XML.
+    var xml : PXmlNode = parseXML(newStringStream(response))
+    var item : PXmlNode = xml.child("channel").child("item")
+    
+    # Create the return objects.
+    var weather0 : TYWeatherForcast
+    var weather1 : TYWeatherForcast
+    var weather2 : TYWeatherForcast
+    var weather3 : TYWeatherForcast
+    var weather4 : TYWeatherForcast
+    
+    # Set the days.
+    weather0.day = item.findAll("yweather:forecast")[0].attr("day")
+    weather1.day = item.findAll("yweather:forecast")[1].attr("day")
+    weather2.day = item.findAll("yweather:forecast")[2].attr("day")
+    weather3.day = item.findAll("yweather:forecast")[3].attr("day")
+    weather4.day = item.findAll("yweather:forecast")[4].attr("day")
+    
+    # Set the dates.
+    weather0.date = item.findAll("yweather:forecast")[0].attr("date")
+    weather1.date = item.findAll("yweather:forecast")[1].attr("date")
+    weather2.date = item.findAll("yweather:forecast")[2].attr("date")
+    weather3.date = item.findAll("yweather:forecast")[3].attr("date")
+    weather4.date = item.findAll("yweather:forecast")[4].attr("date")
+    
+    # Set the lows.
+    weather0.low = item.findAll("yweather:forecast")[0].attr("low")
+    weather1.low = item.findAll("yweather:forecast")[1].attr("low")
+    weather2.low = item.findAll("yweather:forecast")[2].attr("low")
+    weather3.low = item.findAll("yweather:forecast")[3].attr("low")
+    weather4.low = item.findAll("yweather:forecast")[4].attr("low")
+    
+    # Set the highs.
+    weather0.high = item.findAll("yweather:forecast")[0].attr("high")
+    weather1.high = item.findAll("yweather:forecast")[1].attr("high")
+    weather2.high = item.findAll("yweather:forecast")[2].attr("high")
+    weather3.high = item.findAll("yweather:forecast")[3].attr("high")
+    weather4.high = item.findAll("yweather:forecast")[4].attr("high")
+    
+    # Set the texts.
+    weather0.text = item.findAll("yweather:forecast")[0].attr("text")
+    weather1.text = item.findAll("yweather:forecast")[1].attr("text")
+    weather2.text = item.findAll("yweather:forecast")[2].attr("text")
+    weather3.text = item.findAll("yweather:forecast")[3].attr("text")
+    weather4.text = item.findAll("yweather:forecast")[4].attr("text")
+    
+    # Set the codes.
+    weather0.code = item.findAll("yweather:forecast")[0].attr("code")
+    weather1.code = item.findAll("yweather:forecast")[1].attr("code")
+    weather2.code = item.findAll("yweather:forecast")[2].attr("code")
+    weather3.code = item.findAll("yweather:forecast")[3].attr("code")
+    weather4.code = item.findAll("yweather:forecast")[4].attr("code")
+    
+    # Return the array.
+    return [weather0, weather1, weather2, weather3, weather4]
