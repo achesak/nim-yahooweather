@@ -21,7 +21,7 @@ type TYWeather* = tuple[sunrise : string, sunset : string, humidity : string, pr
                        country : string, region : string, windChill : string, windDirection : string, windSpeed : string,
                        distanceUnits : string, pressureUnits : string, speedUnits : string, tempUnits : string]
 
-type TYWeatherForcast* = tuple[code : string, date : string, day : string, high : string, low : string, text : string]
+type TYWeatherForecast* = tuple[code : string, date : string, day : string, high : string, low : string, text : string]
 
 
 proc getWeather*(woeid : string, units : string = "c"): TYWeather = 
@@ -86,11 +86,11 @@ proc getForecasts*(woeid : string, units : string = "c"): array[5, TYWeatherForc
     var item : PXmlNode = xml.child("channel").child("item")
     
     # Create the return objects.
-    var weather0 : TYWeatherForcast
-    var weather1 : TYWeatherForcast
-    var weather2 : TYWeatherForcast
-    var weather3 : TYWeatherForcast
-    var weather4 : TYWeatherForcast
+    var weather0 : TYWeatherForecast
+    var weather1 : TYWeatherForecast
+    var weather2 : TYWeatherForecast
+    var weather3 : TYWeatherForecast
+    var weather4 : TYWeatherForecast
     
     # Set the days.
     weather0.day = item.findAll("yweather:forecast")[0].attr("day")
