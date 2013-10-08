@@ -2,7 +2,7 @@
 name = "yahoo-weather"
 version = "0.1.0"
 author = "Adam Chesak"
-description = "Pastebin API wrapper"
+description = "Yahoo! Weather API wrapper"
 license = "MIT"
 
 [Deps]
