@@ -1,58 +1,9 @@
-#### ABOUT ####
+---- About ----
 
-nimrod-yahoo-weather is a wrapper of the Yahoo! Weather API for the Nimrod programming language.
+nim-yahooweather is a wrapper of the Yahoo! Weather API for the Nim programming language.
 
-----
+See the documentation.html file and the Yahoo! Weather API (http://developer.yahoo.com/weather/) for usage and more info.
 
-#### DOCUMENTATION ####
+---- License ----
 
-getWeather(woeid : string, units : string = "c"): TYWeather
-* Gets the current weather data. woeid is the Where On Earth Identifier for the location, and is required. units can be set to "c" for Celsius, or "f" for Fahrenheit, defaulting to "c". Returns a TYWeather object.
-
-getForecasts(woeid : string, units : string = "c"): array[5, TYWeatherForecast]
-* Gets weather forecasts for the next five days. woeid is the Where On Earth Identifier for the location, and is required. units can be set to "c" for Celsius, or "f" for Fahrenheit, defaulting to "c". Returns an array of five TYWeatherForecast objects.
-
-TYWeather
-* fields:
-  sunrise
-  sunset
-  humidity
-  pressure
-  rising
-  visibility
-  code
-  date
-  temp
-  condition
-  title
-  latitude
-  longitude
-  htmlDescription
-  link
-  city
-  country
-  region
-  windChill
-  windDirection
-  windSpeed
-  distanceUnits
-  pressureUnits
-  speedUnits
-  tempUnits
-
-TYWeatherForecast
-* fields:
-  date
-  day
-  low
-  high
-  code
-  text
-
-See the Yahoo! Weather API (http://developer.yahoo.com/weather/) for more details.
-
-----
-
-#### LICENSE ####
-
-nimrod-yahoo-weather is released under the MIT Open Source License. See the LICENSE file for more information.
+nim-yahooweather is released under the MIT Open Source License.

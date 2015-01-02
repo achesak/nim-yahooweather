@@ -15,17 +15,17 @@ import streams
 
 
 # Create the return types.
-type TYWeather* = tuple[sunrise : string, sunset : string, humidity : string, pressure : string, rising : string, 
+type YWeather* = tuple[sunrise : string, sunset : string, humidity : string, pressure : string, rising : string, 
                        visibility : string, code : string, date : string, temp : string, condition : string, title : string,
                        latitude : string, longitude : string, htmlDescription : string, link : string, city : string,
                        country : string, region : string, windChill : string, windDirection : string, windSpeed : string,
                        distanceUnits : string, pressureUnits : string, speedUnits : string, tempUnits : string]
 
-type TYWeatherForecast* = tuple[code : string, date : string, day : string, high : string, low : string, text : string]
+type YWeatherForecast* = tuple[code : string, date : string, day : string, high : string, low : string, text : string]
 
 
-proc getWeather*(woeid : string, units : string = "c"): TYWeather = 
-    # Gets the weather data.
+proc getWeather*(woeid : string, units : string = "c"): YWeather = 
+    ## Gets the weather data.
     
     # Build the URL.
     var url : string = "http://weather.yahooapis.com/forecastrss?"
@@ -35,12 +35,12 @@ proc getWeather*(woeid : string, units : string = "c"): TYWeather =
     var response : string = getContent(url)
     
     # Parse the XML.
-    var xml : PXmlNode = parseXML(newStringStream(response))
-    var contents : PXmlNode = xml.child("channel")
-    var item : PXmlNode = contents.child("item")
+    var xml : XmlNode = parseXML(newStringStream(response))
+    var contents : XmlNode = xml.child("channel")
+    var item : XmlNode = contents.child("item")
     
     # Create the return object.
-    var weather : TYWeather
+    var weather : YWeather
     weather.link = contents.child("link").innerText
     weather.date = contents.child("lastBuildDate").innerText
     weather.city = contents.child("yweather:location").attr("city")
@@ -71,8 +71,8 @@ proc getWeather*(woeid : string, units : string = "c"): TYWeather =
     return weather
 
 
-proc getForecasts*(woeid : string, units : string = "c"): array[5, TYWeatherForecast] = 
-    # Gets forecasts for the next five days.
+proc getForecasts*(woeid : string, units : string = "c"): array[5, YWeatherForecast] = 
+    ## Gets forecasts for the next five days.
     
     # Build the URL.
     var url : string = "http://weather.yahooapis.com/forecastrss?"
@@ -82,15 +82,15 @@ proc getForecasts*(woeid : string, units : string = "c"): array[5, TYWeatherFore
     var response : string = getContent(url)
     
     # Parse the XML.
-    var xml : PXmlNode = parseXML(newStringStream(response))
-    var item : PXmlNode = xml.child("channel").child("item")
+    var xml : XmlNode = parseXML(newStringStream(response))
+    var item : XmlNode = xml.child("channel").child("item")
     
     # Create the return objects.
-    var weather0 : TYWeatherForecast
-    var weather1 : TYWeatherForecast
-    var weather2 : TYWeatherForecast
-    var weather3 : TYWeatherForecast
-    var weather4 : TYWeatherForecast
+    var weather0 : YWeatherForecast
+    var weather1 : YWeatherForecast
+    var weather2 : YWeatherForecast
+    var weather3 : YWeatherForecast
+    var weather4 : YWeatherForecast
     
     # Set the days.
     weather0.day = item.findAll("yweather:forecast")[0].attr("day")
