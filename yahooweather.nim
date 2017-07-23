@@ -14,14 +14,41 @@ import xmltree
 import streams
 
 
-# Create the return types.
-type YWeather* = tuple[sunrise : string, sunset : string, humidity : string, pressure : string, rising : string, 
-                       visibility : string, code : string, date : string, temp : string, condition : string, title : string,
-                       latitude : string, longitude : string, htmlDescription : string, link : string, city : string,
-                       country : string, region : string, windChill : string, windDirection : string, windSpeed : string,
-                       distanceUnits : string, pressureUnits : string, speedUnits : string, tempUnits : string]
+type
+    YWeather* = ref object
+        sunrise* : string
+        sunset* : string
+        humidity* : string
+        pressure* : string
+        rising* : string
+        visibility* : string
+        code* : string
+        date* : string
+        temp* : string
+        condition* : string
+        title* : string
+        latitude* : string
+        longitude* : string
+        htmlDescription* : string
+        link* : string
+        city* : string
+        country* : string
+        region* : string
+        windChill* : string
+        windDirection* : string
+        windSpeed* : string
+        distanceUnits* : string
+        pressureUnits* : string
+        speedUnits* : string
+        tempUnits* : string
 
-type YWeatherForecast* = tuple[code : string, date : string, day : string, high : string, low : string, text : string]
+    YWeatherForecast* = ref object
+        code* : string
+        date* : string
+        day* : string
+        high* : string
+        low* : string
+        text* : string
 
 
 proc getWeather*(woeid : string, units : string = "c"): YWeather = 
