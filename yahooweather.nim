@@ -32,7 +32,7 @@ proc getWeather*(woeid : string, units : string = "c"): YWeather =
     url = url & "w=" & woeid & "&u=" & units
     
     # Get the data
-    var response : string = getContent(url)
+    var response : string = newHttpClient().getContent(url)
     
     # Parse the XML.
     var xml : XmlNode = parseXML(newStringStream(response))
@@ -79,7 +79,7 @@ proc getForecasts*(woeid : string, units : string = "c"): array[5, YWeatherForec
     url = url & "w=" & woeid & "&u=" & units
     
     # Get the data
-    var response : string = getContent(url)
+    var response : string = newHttpClient().getContent(url)
     
     # Parse the XML.
     var xml : XmlNode = parseXML(newStringStream(response))
