@@ -1,9 +1,9 @@
 [Package]
 name = "yahooweather"
-version = "0.1.0"
+version = "0.2"
 author = "Adam Chesak"
 description = "Yahoo! Weather API wrapper"
 license = "MIT"
 
 [Deps]
-Requires: "nimrod >= 0.10.2"
+Requires: "nim >= 0.15"
